@@ -1,0 +1,9 @@
+{
+	"scripts": {
+		"start": "tsx watch main.ts"
+	},
+	"dependencies": {
+		"tsc": "^2.0.4",
+		"tsx": "^4.7.1"
+	}
+}
