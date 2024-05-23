@@ -3,17 +3,17 @@ function binarySearch(array: Array<number>, searchValue: number): number{
     let right = array.length - 1;
     let middle;
 
-    while (left <= right) {
-        middle = Math.floor((left + right) / 2);
+    while (left != right) {
+        middle = Math.ceil((left + right) / 2);
 
-        if (array[middle] < searchValue) {
-            left = middle + 1;
-        } else if (array[middle] > searchValue) {
+        if (array[middle] > searchValue)
             right = middle - 1;
-        } else {
-            return middle;
-        }
+        else
+            left = middle;
     }
+
+    if (array[left] == searchValue)
+        return left;
 
     return -1;
 }

@@ -1,5 +1,5 @@
 class Stack<ElementType> {
-    private readonly backingArray: Array<ElementType>;
+    private backingArray: Array<ElementType>;
     private _size: number;
 
     constructor() {
@@ -8,7 +8,8 @@ class Stack<ElementType> {
     }
 
     public push(element: ElementType): void {
-        this.backingArray[this._size++] = element;
+        this.backingArray[this._size] = element;
+        ++this._size;
     }
 
     public pop(): ElementType | undefined {
@@ -21,11 +22,13 @@ class Stack<ElementType> {
     public peek(): ElementType | undefined {
         if (this._size == 0)
             return undefined;
+
         return this.backingArray[this._size - 1];
     }
 
     public clear(): void {
         this._size = 0;
+        this.backingArray = [];
     }
 
     public isEmpty(): boolean {
