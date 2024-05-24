@@ -56,3 +56,35 @@ function treeToArray(root: TreeNode | null): Array<number | null> {
 
     return array;
 }
+
+type LCAReturn = {
+    hasP: boolean,
+    hasQ: boolean,
+    found: TreeNode | null
+}
+
+function lcaRecursively(root: TreeNode | null, p: TreeNode | null, q: TreeNode | null): LCAReturn {
+    if (root == null)
+        return {
+            hasP: false,
+            hasQ: false,
+            found: null
+        }
+
+    const left = lcaRecursively(root.left, p, q);
+    const right = lcaRecursively(root.right, p, q);
+
+    if (left.found != null)
+        return left;
+    if (right.found != null)
+        return right;
+
+    const hasP = left.hasP || right.hasP || root == p;
+    const hasQ = left.hasQ || right.hasQ || root == q;
+
+    return {
+        hasP: hasP,
+        hasQ: hasQ,
+        found: hasP && hasQ ? root : null
+    }
+}
